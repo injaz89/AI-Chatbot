@@ -1,0 +1,22 @@
+/* ── Tailwind CSS v4 – import all layers ──────────────────────────────────── */
+@import "tailwindcss";
+
+/* ── Global reset & base tokens ──────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #0f172a; /* slate-900 – dark base */
+  color: #e2e8f0;            /* slate-200 */
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
