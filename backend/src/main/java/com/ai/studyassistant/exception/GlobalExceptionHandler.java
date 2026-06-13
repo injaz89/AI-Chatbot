@@ -53,6 +53,22 @@ public class GlobalExceptionHandler {
         return problem;
     }
 
+    // ─── GeminiApiException → 502 ────────────────────────────────────────────
+
+    @ExceptionHandler(GeminiApiException.class)
+    public ProblemDetail handleGeminiApiException(GeminiApiException ex) {
+        ProblemDetail problem = ProblemDetail.forStatusAndDetail(
+                HttpStatus.BAD_GATEWAY,
+                "The AI service is temporarily unavailable. " + ex.getMessage());
+        problem.setTitle("AI Service Error");
+        problem.setType(URI.create("https://studyassistant.local/errors/ai-service-error"));
+        problem.setProperty("timestamp", Instant.now());
+        if (ex.getUpstreamStatusCode() > 0) {
+            problem.setProperty("upstreamStatus", ex.getUpstreamStatusCode());
+        }
+        return problem;
+    }
+
     // ─── Generic fallback → 500 ───────────────────────────────────────────────
 
     @ExceptionHandler(Exception.class)

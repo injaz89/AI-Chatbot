@@ -22,3 +22,6 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
+backend/.env
+# .env.example files ARE committed (they contain no real values)
+!**/.env.example
